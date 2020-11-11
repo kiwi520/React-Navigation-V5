@@ -47,6 +47,7 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 //主题
 import {AppearanceProvider, useColorScheme} from 'react-native-appearance';
@@ -64,7 +65,7 @@ const App = () => {
   const MyTheme = {
     dark: false,
     colors: {
-      primary: 'rgb(255, 45, 85)',
+      primary: 'rgb(45, 45, 85)',
       background: 'rgb(242, 242, 242)',
       card: 'rgb(255, 255, 255)',
       text: 'rgb(28, 28, 30)',
@@ -117,10 +118,45 @@ const App = () => {
 
   const createBottomTabs = () => {
     return (
-      <MaterialBottomTabs.Navigator>
-        <MaterialBottomTabs.Screen name={'left'} component={LeftTab} />
-        <MaterialBottomTabs.Screen name={'center'} component={CenterTab} />
-        <MaterialBottomTabs.Screen name={'right'} component={RightTab} />
+      // <MaterialBottomTabs.Navigator>
+      //   <MaterialBottomTabs.Screen name={'left'} component={LeftTab} />
+      //   <MaterialBottomTabs.Screen name={'center'} component={CenterTab} />
+      //   <MaterialBottomTabs.Screen name={'right'} component={RightTab} />
+      // </MaterialBottomTabs.Navigator>
+      <MaterialBottomTabs.Navigator
+        initialRouteName="LeftTab"
+        activeColor="#e91e63"
+        style={{backgroundColor: 'tomato'}}>
+        <MaterialBottomTabs.Screen
+          name={'left'}
+          component={LeftTab}
+          options={{
+            tabBarLabel: 'LeftTab',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="home" color={color} size={26} />
+            ),
+          }}
+        />
+        <MaterialBottomTabs.Screen
+          name={'center'}
+          component={CenterTab}
+          options={{
+            tabBarLabel: 'CenterTab',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="bell" color={color} size={26} />
+            ),
+          }}
+        />
+        <MaterialBottomTabs.Screen
+          name={'right'}
+          component={RightTab}
+          options={{
+            tabBarLabel: 'RightTab',
+            tabBarIcon: ({color}) => (
+              <MaterialCommunityIcons name="account" color={color} size={26} />
+            ),
+          }}
+        />
       </MaterialBottomTabs.Navigator>
     );
   };
